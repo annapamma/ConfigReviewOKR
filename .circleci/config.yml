@@ -6,7 +6,7 @@ jobs:
       - image: circleci/node:9.9.0
     steps:
       - checkout
-      - run: node --version
+      - run: sudo apt-get update && sudo apt-get install mysql-server
       - persist_to_workspace:
           root: .
           paths:
