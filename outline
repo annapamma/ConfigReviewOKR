@@ -3,7 +3,7 @@ Build - Test - Deploy to AWS
 - Uses not a cimg
 https://circleci.com/blog/announcing-our-next-generation-convenience-images-smaller-faster-more-deterministic/
 
-- Installs a lot of custom packages
+- Installs custom packages: may want to consider building a custom docker image
 - Persists the entire workspace directory
 We have checks for whether or not concurrent jobs tried to persist the same files, and those grow more expensive with more files persisted.
 - Parallelizing unwisely
