@@ -1,0 +1,21 @@
+Build - Test - Deploy to AWS
+
+- Uses not a cimg
+https://circleci.com/blog/announcing-our-next-generation-convenience-images-smaller-faster-more-deterministic/
+
+- Installs a lot of custom packages
+- Persists the entire workspace directory
+We have checks for whether or not concurrent jobs tried to persist the same files, and those grow more expensive with more files persisted.
+- Parallelizing unwisely
+- Not using a fallback key
+- Not using secrets
+- Not using an AWS deploy orb
+
+
+Advanced features
+Build - Test on different executors - Manual approval step - Deploy to AWS
+
+- Using multi-stage builds for a small custom Docker image
+- Reusable parts of config (commands, executors)
+- Using multiple orbs (Slack for manual approval, deploy to AWS)
+- Encrypting secrets in the config
