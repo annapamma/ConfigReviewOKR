@@ -1,26 +1,27 @@
 version: 2.1
 
-# make this a v large application to build so they would benefit from a larger resource class
 jobs:
   test:
     docker:
-      - image: circleci/node:9.9.0
-    parallelism: 10
+      - image: circleci/node:9.9.0 # use nextgen image for latest version of Node
+    parallelism: 10 # assess whether this is worth it
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v1-deps-{{ checksum "package-lock.json" }}
+            - v1-deps-{{ checksum "package-lock.json" }} # use a fallback key
       - run: npm install
       - save_cache:
-          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+          key: v1-deps-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
       - run: CI=true npm run test
+      # configure test splitting properly
 
   build:
     docker:
       - image: circleci/node:9.9.0
+    resource_class: xlarge # use more appropriate resource class
     steps:
       - checkout
       - restore_cache:
@@ -28,7 +29,7 @@ jobs:
             - v1-deps-{{ checksum "package-lock.json" }}
       - run: npm install
       - save_cache:
-          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+          key: v1-deps-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
       - run: npm run build
@@ -36,7 +37,7 @@ jobs:
           root: .
           paths:
             - '*'
-    # want to persist just the build directory, ideally compressed
+    # persist just the build directory, ideally compressed
 
   deploy: # use aws-s3 orb
     docker:
@@ -82,7 +83,7 @@ jobs:
               --cache-control "max-age=86400"
 
 workflows:
-  build-test-deploy:
+  test-build-deploy:
     jobs:
       - test
       - build:
