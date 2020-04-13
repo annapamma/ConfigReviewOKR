@@ -1,21 +1,38 @@
+# Imaginary application: Node.js app that uses a MySQL server and is deployed to S3
+
 Build - Test - Deploy to AWS
 
-- Uses not a cimg
+- Could use a cimg
 https://circleci.com/blog/announcing-our-next-generation-convenience-images-smaller-faster-more-deterministic/
-
-- Installs custom packages: may want to consider building a custom docker image
-- Persists the entire workspace directory
+- Installs large packages with each run: may want to consider building a custom docker image
+- Persists the entire working directory
 We have checks for whether or not concurrent jobs tried to persist the same files, and those grow more expensive with more files persisted.
 - Parallelizing unwisely
 - Not using a fallback key
 - Not using secrets
 - Not using an AWS deploy orb
+- Not using resource classes? Using a manual approval step?
 
 
 Advanced features
 Build - Test on different executors - Manual approval step - Deploy to AWS
 
-- Using multi-stage builds for a small custom Docker image
+- DLC and using multi-stage builds for a small custom Docker image
+-- especially if the DLC orb is generally available at this point
 - Reusable parts of config (commands, executors)
-- Using multiple orbs (Slack for manual approval, deploy to AWS)
+- Using multiple orbs (Slack for manual approval, deploy to AWS); deep-dive into orbs
 - Encrypting secrets in the config
+- API: Contexts, Insights, Pipelines
+
+Best ways to present this:
+- Before and after
+- Side-by-side: this is what is looks like when you implement this way, eg fallback key and secrets
+- Embed interactive diff checker -- something like what Github has
+
+Possible delivery of advanced features:
+- Ask Rebekah about webinar?
+-- Product training for less technical departments
+- Series of blog posts
+- Course for LMS
+-- Create knowledge checks for the LMS
+
