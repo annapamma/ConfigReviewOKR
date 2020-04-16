@@ -21,6 +21,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:9.9.0
+      # look into reusable executors
     resource_class: xlarge # use more appropriate resource class
     steps:
       - checkout

@@ -1,0 +1,36 @@
+#
+# Imaginary application: Node.js app that uses a MySQL server and is deployed to S3
+
+Test - Build - Deploy to AWS
+# Expandable code snippets
+
+1. Selecting the right executor
+- Using next-gen images
+https://circleci.com/blog/announcing-our-next-generation-convenience-images-smaller-faster-more-deterministic/
+JOHANNA
+
+2. Best practices for parallelism
+- Test splitting
+- Parallelizing wisely
+ANNA
+
+3. Best practices for caches and workspaces
+- Using a fallback key
+- Selectively persisting to workspace
+Docs:
+- https://circleci.com/docs/2.0/caching/#example-caching-configuration
+BEBE
+
+4. Best practices for secrets management
+- Using contexts and restricted contexts
+BEBE
+
+5. Best practices for keeping your config DRY
+- Using orbs
+- Defining reusable images; commands
+GRANT
+
+Single google doc, then later mush into a coherent blog post
+Can Ron review once we have a solid draft?
+
+Can you write a paragraph or two by next Thursday on one of the sections?
