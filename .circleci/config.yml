@@ -4,7 +4,7 @@ jobs:
   test:
     docker:
       - image: circleci/node:9.9.0 # use nextgen image for latest version of Node
-    parallelism: 10 # assess whether this is worth it
+    parallelism: 1 # assess whether this is worth it
     steps:
       - checkout
       - restore_cache:
@@ -47,7 +47,7 @@ jobs:
     steps:
         - checkout
         - attach_workspace:
-            at: 'tmp'
+            at: /tmp
         - run:
             name: Install AWS CLI
             command: |
