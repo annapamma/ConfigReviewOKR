@@ -34,10 +34,11 @@ jobs:
           paths:
             - node_modules
       - run: npm run build
+      - run: mkdir tmp && zip -r tmp/build.zip build
       - persist_to_workspace:
           root: .
           paths:
-            - '*'
+            - 'tmp'
     # persist just the build directory, ideally compressed
 
   deploy: # use aws-s3 orb
@@ -46,7 +47,7 @@ jobs:
     steps:
         - checkout
         - attach_workspace:
-            at: .
+            at: 'tmp'
         - run:
             name: Install AWS CLI
             command: |
